@@ -41,6 +41,20 @@ const Hero = () => {
                 fill
                 className="w-full h-full object-cover"
               />
+
+              <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[1] bg-black/20"></div>
+
+              <div className="absolute top-0 left-0 right-0 w-full h-full container mx-auto md:p-20 text-center flex flex-col gap-5 items-center justify-center z-[2] text-white">
+                <h1 className="text-5xl md:text-7xl font-bold">
+                  Now you are in the right place for eat!
+                </h1>
+                <p className="md:text-xl">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
+                  quam deserunt aliquid omnis modi recusandae maiores, quae
+                  veniam a perferendis, possimus architecto accusantium quia
+                  odio inventore est cumque voluptatibus assumenda!
+                </p>
+              </div>
             </div>
           </SwiperSlide>
         ))}
