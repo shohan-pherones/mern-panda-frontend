@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 const data = [
   "/images/slide-1.jpg",
@@ -53,9 +54,11 @@ const Hero = () => {
                   veniam a perferendis, possimus architecto accusantium quia
                   odio inventore est cumque voluptatibus assumenda!
                 </p>
-                <Button size="lg" className="md:text-xl bg-orange-500">
-                  Get Started
-                </Button>
+                <Link href="/#get_started">
+                  <Button size="lg" className="md:text-xl bg-orange-500">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
