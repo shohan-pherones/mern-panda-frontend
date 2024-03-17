@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mern Panda",
@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
+      <body className={rubik.className}>
+        <main className="flex flex-col min-h-screen">
           <Header />
           <div className="flex-1">{children}</div>
-        </div>
+        </main>
         <Footer />
       </body>
     </html>

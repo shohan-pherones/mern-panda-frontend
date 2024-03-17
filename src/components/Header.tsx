@@ -4,7 +4,7 @@ import MainNav from "./MainNav";
 
 const Header = () => {
   return (
-    <div id="header" className="border-b-2 border-b-orange-500 py-6">
+    <header id="header" className="border-b-2 border-b-orange-500 py-6">
       <div className="container mx-auto flex justify-between items-center">
         <Link
           href="/"
@@ -19,7 +19,7 @@ const Header = () => {
           <MobileNav />
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
