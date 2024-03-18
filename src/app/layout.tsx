@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Auth0ProviderWithNavigate from "@/auth/Auth0ProviderWithNavigate";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -18,16 +19,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Auth0ProviderWithNavigate>
-      <html lang="en" className="scroll-smooth">
-        <body className={rubik.className}>
-          <main className="flex flex-col min-h-screen">
-            <Header />
-            <div className="flex-1">{children}</div>
-          </main>
-          <Footer />
-        </body>
-      </html>
-    </Auth0ProviderWithNavigate>
+    <ReactQueryClientProvider>
+      <Auth0ProviderWithNavigate>
+        <html lang="en" className="scroll-smooth">
+          <body className={rubik.className}>
+            <main className="flex flex-col min-h-screen">
+              <Header />
+              <div className="flex-1">{children}</div>
+            </main>
+            <Footer />
+          </body>
+        </html>
+      </Auth0ProviderWithNavigate>
+    </ReactQueryClientProvider>
   );
 }
