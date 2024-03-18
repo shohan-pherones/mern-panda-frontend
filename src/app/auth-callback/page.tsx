@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateMyUser } from "@/api/MyUserApi";
+import { useCreateMyUser } from "@/api-requests/MyUserApi";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";

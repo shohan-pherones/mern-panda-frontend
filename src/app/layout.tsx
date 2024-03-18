@@ -3,8 +3,8 @@ import { Rubik } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Auth0ProviderWithNavigate from "@/auth/Auth0ProviderWithNavigate";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
+import Auth0ProviderWithNavigate from "@/providers/Auth0ProviderWithNavigate";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
