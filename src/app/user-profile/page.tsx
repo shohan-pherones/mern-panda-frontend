@@ -1,5 +1,12 @@
+"use client";
+
+import UserProfileForm from "@/components/UserProfileForm";
+import { useUpdateMyUser } from "@/hooks/useUpdateMyUser";
+
 const UserProfilePage = () => {
-  return <div>UserProfilePage</div>;
+  const { updateUser, isLoading } = useUpdateMyUser();
+
+  return <UserProfileForm onSave={updateUser} isLoading={isLoading} />;
 };
 
 export default UserProfilePage;

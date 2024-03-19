@@ -1,7 +1,6 @@
+import { API_BASE_URL } from "@/constants";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 type CreateUserRequest = {
   auth0Id: string;

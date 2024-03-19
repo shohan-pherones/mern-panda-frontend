@@ -1,6 +1,6 @@
 "use client";
 
-import { useCreateMyUser } from "@/api-requests/MyUserApi";
+import { useCreateMyUser } from "@/hooks/useCreateMyUser";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
@@ -20,7 +20,9 @@ const AuthCallbackPage = () => {
     router.push("/");
   }, [createUser, router, user]);
 
-  return <>Loading...</>;
+  return (
+    <div className="h-screen flex items-center justify-center">Loading...</div>
+  );
 };
 
 export default AuthCallbackPage;

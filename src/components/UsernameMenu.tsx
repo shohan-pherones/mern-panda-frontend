@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { CircleUserRound } from "lucide-react";
 import Link from "next/link";
+import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Separator } from "./ui/separator";
-import { Button } from "./ui/button";
 
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();

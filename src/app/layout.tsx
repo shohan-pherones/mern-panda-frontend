@@ -1,10 +1,11 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { Toaster } from "@/components/ui/sonner";
+import Auth0ProviderWithNavigate from "@/providers/Auth0ProviderWithNavigate";
+import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";
-import Auth0ProviderWithNavigate from "@/providers/Auth0ProviderWithNavigate";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       <Auth0ProviderWithNavigate>
         <html lang="en" className="scroll-smooth">
           <body className={rubik.className}>
+            <Toaster visibleToasts={1} position="bottom-right" richColors />
             <main className="flex flex-col min-h-screen">
               <Header />
               <div className="flex-1">{children}</div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import MobileNav from "./MobileNav";
 import MainNav from "./MainNav";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
