@@ -1,5 +1,7 @@
 "use client";
 
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 import UserProfileForm from "@/components/UserProfileForm";
 import { useGetMyUser } from "@/hooks/useGetMyUser";
 import { useUpdateMyUser } from "@/hooks/useUpdateMyUser";
@@ -9,11 +11,11 @@ const UserProfilePage = () => {
   const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
 
   if (isGetLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!currentUser) {
-    return <div>Unable to load user profile</div>;
+    return <Error message="Unable to load user profile" />;
   }
 
   return (

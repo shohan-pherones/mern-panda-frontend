@@ -24,7 +24,7 @@ export default function RootLayout({
       <Auth0ProviderWithNavigate>
         <html lang="en" className="scroll-smooth">
           <body className={rubik.className}>
-            <Toaster visibleToasts={1} position="bottom-right" richColors />
+            <Toaster visibleToasts={1} position="top-right" richColors />
             <main className="flex flex-col min-h-screen">
               <Header />
               <div className="flex-1">{children}</div>
