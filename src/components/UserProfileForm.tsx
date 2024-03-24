@@ -15,6 +15,8 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { User } from "@/types";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z.string().optional(),
@@ -29,12 +31,18 @@ export type UserFormDataType = z.infer<typeof formSchema>;
 interface Props {
   onSave: (userProfileData: UserFormDataType) => void;
   isLoading: boolean;
+  currentUser: User;
 }
 
-const UserProfileForm = ({ isLoading, onSave }: Props) => {
+const UserProfileForm = ({ isLoading, onSave, currentUser }: Props) => {
   const form = useForm<UserFormDataType>({
     resolver: zodResolver(formSchema),
+    defaultValues: currentUser,
   });
+
+  useEffect(() => {
+    form.reset(currentUser);
+  }, [currentUser, form]);
 
   return (
     <Form {...form}>
