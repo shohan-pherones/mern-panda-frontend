@@ -1,8 +1,9 @@
 "use client";
 
 import { useAuth0 } from "@auth0/auth0-react";
-import { CircleUserRound, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import MobileNavLinks from "./MobileNavLinks";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import {
@@ -24,10 +25,13 @@ const MobileNav = () => {
       <SheetContent className="space-y-6">
         <SheetTitle>
           {isAuthenticated ? (
-            <span className="flex items-center font-bold gap-2">
-              <CircleUserRound className="text-orange-500" />
-              {user?.email}
-            </span>
+            <div className="flex items-center font-bold gap-3">
+              <Avatar>
+                <AvatarImage src={user?.picture} />
+                <AvatarFallback>{user?.name?.split("")[0]}</AvatarFallback>
+              </Avatar>
+              <span>{user?.name}</span>
+            </div>
           ) : (
             <span>Navigation</span>
           )}
