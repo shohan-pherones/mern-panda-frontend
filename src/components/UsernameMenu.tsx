@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Separator } from "./ui/separator";
 
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();
@@ -31,7 +30,14 @@ const UsernameMenu = () => {
             User Profile
           </Link>
         </DropdownMenuItem>
-        <Separator />
+        <DropdownMenuItem>
+          <Link
+            href="/manage-restaurant"
+            className="font-bold hover:text-orange-500"
+          >
+            Manage Restaurant
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem>
           <Button
             onClick={() =>

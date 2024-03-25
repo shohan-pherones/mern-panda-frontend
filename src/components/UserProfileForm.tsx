@@ -1,9 +1,14 @@
 "use client";
 
+import { User } from "@/types";
+import {
+  UserProfileFormDataType,
+  userProfileFormSchema,
+} from "@/validations/userProfileFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Button } from "./ui/button";
 import {
   Form,
@@ -15,28 +20,16 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import { User } from "@/types";
-import { useEffect } from "react";
-
-const formSchema = z.object({
-  email: z.string().optional(),
-  name: z.string().min(3, "Name is required"),
-  addressLine1: z.string().min(3, "AddressLine1 is required"),
-  country: z.string().min(3, "Country is required"),
-  city: z.string().min(3, "City is required"),
-});
-
-export type UserFormDataType = z.infer<typeof formSchema>;
 
 interface Props {
-  onSave: (userProfileData: UserFormDataType) => void;
+  onSave: (userProfileData: UserProfileFormDataType) => void;
   isLoading: boolean;
   currentUser: User;
 }
 
 const UserProfileForm = ({ isLoading, onSave, currentUser }: Props) => {
-  const form = useForm<UserFormDataType>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<UserProfileFormDataType>({
+    resolver: zodResolver(userProfileFormSchema),
     defaultValues: currentUser,
   });
 
