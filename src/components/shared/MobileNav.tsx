@@ -2,17 +2,17 @@
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { Menu } from "lucide-react";
-import MobileNavLinks from "./MobileNavLinks";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "../ui/sheet";
+import MobileNavLinks from "./MobileNavLinks";
 
 const MobileNav = () => {
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();

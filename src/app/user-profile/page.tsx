@@ -1,8 +1,8 @@
 "use client";
 
-import Error from "@/components/Error";
-import Loading from "@/components/Loading";
-import UserProfileForm from "@/components/UserProfileForm";
+import UserProfileForm from "@/components/forms/UserProfileForm";
+import Error from "@/components/shared/Error";
+import Loading from "@/components/shared/Loading";
 import { useGetMyUser } from "@/hooks/useGetMyUser";
 import { useUpdateMyUser } from "@/hooks/useUpdateMyUser";
 

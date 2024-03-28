@@ -1,13 +1,13 @@
 import { useFormContext } from "react-hook-form";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
 
 interface Props {
   index: number;

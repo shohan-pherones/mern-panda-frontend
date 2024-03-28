@@ -8,9 +8,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
-import AddMenuSection from "./AddMenuSection";
-import { Button } from "./ui/button";
-import { Checkbox } from "./ui/checkbox";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
 import {
   Form,
   FormControl,
@@ -19,8 +18,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
+import AddMenuSection from "./AddMenuSection";
 
 type Props = {
   onSave: (restaurantFormData: RestaurantFormDataType) => void;

@@ -1,4 +1,4 @@
-import ManageRestaurantForm from "@/components/ManageRestaurantForm";
+import ManageRestaurantForm from "@/components/forms/ManageRestaurantForm";
 
 const ManageRestaurantPage = () => {
   return <ManageRestaurantForm />;

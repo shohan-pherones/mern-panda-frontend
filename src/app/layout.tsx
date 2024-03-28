@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 import { Toaster } from "@/components/ui/sonner";
 import Auth0ProviderWithNavigate from "@/providers/Auth0ProviderWithNavigate";
 import ReactQueryClientProvider from "@/providers/ReactQueryClientProvider";

@@ -1,5 +1,5 @@
-import { UserFormDataType } from "@/components/UserProfileForm";
 import { API_BASE_URL } from "@/constants";
+import { UserProfileFormDataType } from "@/validations/userProfileFormSchema";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query";
 import { toast } from "sonner";
@@ -7,7 +7,7 @@ import { toast } from "sonner";
 export const useUpdateMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const updateMyUserRequest = async (formData: UserFormDataType) => {
+  const updateMyUserRequest = async (formData: UserProfileFormDataType) => {
     const accessToken = await getAccessTokenSilently();
 
     const res = await fetch(`${API_BASE_URL}/api/my/user`, {
