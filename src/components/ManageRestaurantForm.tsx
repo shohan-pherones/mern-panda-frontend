@@ -6,8 +6,10 @@ import {
   restaurantFormSchema,
 } from "@/validations/restaurantFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import AddMenuSection from "./AddMenuSection";
+import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import {
   Form,
@@ -34,7 +36,9 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     },
   });
 
-  const onSubmit = (data: RestaurantFormDataType) => {};
+  const onSubmit = (data: RestaurantFormDataType) => {
+    console.log(data);
+  };
 
   return (
     <Form {...form}>
@@ -161,6 +165,49 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
 
         {/* MENU SECTION */}
         <AddMenuSection />
+
+        {/* IMAGE SECTION */}
+        <div className="space-y-5">
+          <div>
+            <h2 className="text-2xl font-bold">Image</h2>
+            <FormDescription>
+              Add an image that will be displayed on your restaurant listing
+            </FormDescription>
+          </div>
+
+          <div className="flex flex-col gap-8 w-1/2">
+            <FormField
+              control={form.control}
+              name="imageFile"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      accept=".jpg, .jpeg, .png"
+                      onChange={(event) =>
+                        field.onChange(
+                          event.target.files ? event.target.files[0] : null
+                        )
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
+        <Button className="bg-orange-500" size="lg" disabled={isLoading}>
+          {isLoading ? (
+            <span className="flex items-center gap-2">
+              <Loader2 size={18} className="animate-spin" /> Submitting
+            </span>
+          ) : (
+            "Submit"
+          )}
+        </Button>
       </form>
     </Form>
   );
