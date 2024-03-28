@@ -7,6 +7,7 @@ import {
 } from "@/validations/restaurantFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import AddMenuSection from "./AddMenuSection";
 import { Checkbox } from "./ui/checkbox";
 import {
   Form,
@@ -157,6 +158,9 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
             )}
           />
         </div>
+
+        {/* MENU SECTION */}
+        <AddMenuSection />
       </form>
     </Form>
   );
