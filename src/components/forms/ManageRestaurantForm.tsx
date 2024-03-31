@@ -31,8 +31,14 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
   const form = useForm<RestaurantFormDataType>({
     resolver: zodResolver(restaurantFormSchema),
     defaultValues: {
+      restaurantName: "",
+      country: "",
+      city: "",
+      deliveryPrice: 0,
+      estimatedDeliveryTime: 0,
       cuisines: [],
       menuItems: [{ name: "", price: 0 }],
+      imageFile: undefined,
     },
   });
 
