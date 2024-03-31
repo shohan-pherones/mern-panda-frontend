@@ -1,7 +1,14 @@
+"use client";
+
 import ManageRestaurantForm from "@/components/forms/ManageRestaurantForm";
+import { useCreateMyRestaurant } from "@/hooks/useCreateMyRestaurant";
 
 const ManageRestaurantPage = () => {
-  return <ManageRestaurantForm />;
+  const { createRestaurant, isLoading } = useCreateMyRestaurant();
+
+  return (
+    <ManageRestaurantForm isLoading={isLoading} onSave={createRestaurant} />
+  );
 };
 
 export default ManageRestaurantPage;
