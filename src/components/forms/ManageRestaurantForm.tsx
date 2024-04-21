@@ -1,6 +1,7 @@
 "use client";
 
 import { cuisineList } from "@/config";
+import { Restaurant } from "@/types";
 import {
   RestaurantFormDataType,
   restaurantFormSchema,
@@ -23,11 +24,12 @@ import { Input } from "../ui/input";
 import AddMenuSection from "./AddMenuSection";
 
 type Props = {
+  restaurant?: Restaurant;
   onSave: (restaurantFormData: FormData) => void;
   isLoading: boolean;
 };
 
-const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
+const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   const form = useForm<RestaurantFormDataType>({
     resolver: zodResolver(restaurantFormSchema),
     defaultValues: {
