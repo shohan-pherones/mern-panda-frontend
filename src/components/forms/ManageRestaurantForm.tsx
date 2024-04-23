@@ -8,7 +8,10 @@ import {
 } from "@/validations/restaurantFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { AspectRatio } from "../ui/aspect-ratio";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import {
@@ -43,6 +46,29 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       imageFile: undefined,
     },
   });
+
+  useEffect(() => {
+    if (!restaurant) {
+      return;
+    }
+
+    const deliveryPriceFromatted = parseInt(
+      (restaurant.deliveryPrice / 100).toFixed(2)
+    );
+
+    const menuItemsFormatted = restaurant.menuItems.map((item) => ({
+      ...item,
+      price: parseInt((item.price / 100).toFixed(2)),
+    }));
+
+    const updatedRestaurant = {
+      ...restaurant,
+      deliveryPrice: deliveryPriceFromatted,
+      menuItems: menuItemsFormatted,
+    };
+
+    form.reset(updatedRestaurant);
+  }, [form, restaurant]);
 
   const onSubmit = (formDataJson: RestaurantFormDataType) => {
     const formData = new FormData();
@@ -208,7 +234,17 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
             </FormDescription>
           </div>
 
-          <div className="flex flex-col gap-8 w-1/2">
+          <div className="flex flex-col gap-8 md:w-1/2">
+            {restaurant?.imageUrl && restaurant?.restaurantName && (
+              <AspectRatio ratio={16 / 9}>
+                <Image
+                  src={restaurant.imageUrl}
+                  fill
+                  className="rounded-md object-cover h-full w-full"
+                  alt={restaurant.restaurantName}
+                />
+              </AspectRatio>
+            )}
             <FormField
               control={form.control}
               name="imageFile"
