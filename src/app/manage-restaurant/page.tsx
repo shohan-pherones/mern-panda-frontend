@@ -3,16 +3,22 @@
 import ManageRestaurantForm from "@/components/forms/ManageRestaurantForm";
 import { useCreateMyRestaurant } from "@/hooks/useCreateMyRestaurant";
 import { useGetMyRestaurant } from "@/hooks/useGetMyRestaurant";
+import { useUpdateMyRestaurant } from "@/hooks/useUpdateMyRestaurant";
 
 const ManageRestaurantPage = () => {
-  const { createRestaurant, isLoading } = useCreateMyRestaurant();
+  const { createRestaurant, isLoading: isCreateLoading } =
+    useCreateMyRestaurant();
   const { currentRestaurant } = useGetMyRestaurant();
+  const { updateRestaurant, isLoading: isUpdateLoading } =
+    useUpdateMyRestaurant();
+
+  const isEditing = !!currentRestaurant;
 
   return (
     <ManageRestaurantForm
       restaurant={currentRestaurant}
-      isLoading={isLoading}
-      onSave={createRestaurant}
+      isLoading={isCreateLoading || isUpdateLoading}
+      onSave={isEditing ? updateRestaurant : createRestaurant}
     />
   );
 };
