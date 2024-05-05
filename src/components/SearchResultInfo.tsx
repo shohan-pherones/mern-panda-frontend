@@ -12,7 +12,7 @@ const SearchResultInfo = ({ total, city }: Props) => {
         {total} Restaurant{total > 1 ? "s" : null} found in {city}
         <Link
           href="/"
-          className="ml-2 text-sm font-semibold underline cursor-pointer text-sky-500"
+          className="ml-2 text-sm font-semibold underline cursor-pointer text-sky-500 whitespace-nowrap"
         >
           Change Location
         </Link>

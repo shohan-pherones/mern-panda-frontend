@@ -1,13 +1,14 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Search } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form, FormControl, FormField, FormItem } from "../ui/form";
-import { Search } from "lucide-react";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { Form, FormControl, FormField, FormItem } from "../ui/form";
+import { Input } from "../ui/input";
 
 const formSchema = z.object({
   searchQuery: z.string({
@@ -21,15 +22,20 @@ interface Props {
   onSubmit: (formData: SearchForm) => void;
   placeholder: string;
   onReset?: () => void;
+  searchQuery?: string;
 }
 
-const SearchBar = ({ onSubmit, placeholder, onReset }: Props) => {
+const SearchBar = ({ onSubmit, placeholder, onReset, searchQuery }: Props) => {
   const form = useForm<SearchForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      searchQuery: "",
+      searchQuery,
     },
   });
+
+  useEffect(() => {
+    form.reset({ searchQuery });
+  }, [form, searchQuery]);
 
   const handleReset = () => {
     form.reset({
@@ -46,7 +52,7 @@ const SearchBar = ({ onSubmit, placeholder, onReset }: Props) => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          "flex items-center flex-1 gap-3 justify-between flex-row border-2 rounded-full p-3 mx-5",
+          "flex items-center flex-1 gap-3 justify-between flex-row border-2 rounded-full p-3",
           form.formState.errors.searchQuery && "border-red-500"
         )}
       >
@@ -71,16 +77,14 @@ const SearchBar = ({ onSubmit, placeholder, onReset }: Props) => {
             </FormItem>
           )}
         />
-        {form.formState.isDirty && (
-          <Button
-            onClick={handleReset}
-            type="button"
-            variant="outline"
-            className="rounded-full"
-          >
-            Clear
-          </Button>
-        )}
+        <Button
+          onClick={handleReset}
+          type="button"
+          variant="outline"
+          className="rounded-full"
+        >
+          Reset
+        </Button>
         <Button type="submit" className="rounded-full bg-orange-500">
           Search
         </Button>
