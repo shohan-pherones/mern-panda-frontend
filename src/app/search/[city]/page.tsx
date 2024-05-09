@@ -1,5 +1,6 @@
 "use client";
 
+import CusineFilter from "@/components/CusineFilter";
 import PaginationSelector from "@/components/PaginationSelector";
 import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultInfo";
@@ -12,15 +13,26 @@ import { useState } from "react";
 export interface SearchState {
   searchQuery: string;
   page: number;
+  selectedCuisines: string[];
 }
 
 const SearchPage = ({ params }: { params: { city: string } }) => {
   const [searchState, setSearchState] = useState<SearchState>({
     searchQuery: "",
     page: 1,
+    selectedCuisines: [],
   });
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const { results, isLoading } = useRestaurantPublic(searchState, params.city);
+
+  const setSelectedCuisines = (selectedCuisines: string[]) => {
+    setSearchState((prev) => ({
+      ...prev,
+      selectedCuisines,
+      page: 1,
+    }));
+  };
 
   const setPage = (page: number) => {
     setSearchState((prev) => ({
@@ -55,7 +67,14 @@ const SearchPage = ({ params }: { params: { city: string } }) => {
 
   return (
     <div className="container mx-auto mt-5 grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-      <div id="cuisines-list">{/* INSERT CUISINES LIST HERE */}</div>
+      <div id="cuisines-list">
+        <CusineFilter
+          selectedCuisines={searchState.selectedCuisines}
+          onChange={setSelectedCuisines}
+          isExpanded={isExpanded}
+          onExpandedClick={() => setIsExpanded((prev) => !prev)}
+        />
+      </div>
       <div id="main-content" className="flex flex-col gap-5">
         <SearchBar
           searchQuery={searchState.searchQuery}
