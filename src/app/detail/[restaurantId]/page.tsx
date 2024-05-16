@@ -54,6 +54,14 @@ const RestaurantDetailPage = ({
     });
   };
 
+  const removeFromCart = (cartItem: CartItem) => {
+    setCartItems((prev) => {
+      const updatedCartItems = prev.filter((item) => cartItem._id !== item._id);
+
+      return updatedCartItems;
+    });
+  };
+
   const { restaurant, isLoading } = useGetPublicRestaurant(params.restaurantId);
 
   if (isLoading) {
@@ -89,7 +97,11 @@ const RestaurantDetailPage = ({
 
         <div>
           <Card>
-            <OrderSummery restaurant={restaurant} cartItems={cartItems} />
+            <OrderSummery
+              restaurant={restaurant}
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+            />
           </Card>
         </div>
       </div>
