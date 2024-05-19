@@ -1,14 +1,16 @@
 "use client";
 
+import CheckoutButton from "@/components/CheckoutButton";
 import MenuItem from "@/components/MenuItem";
 import OrderSummery from "@/components/OrderSummery";
 import RestaurantInfo from "@/components/RestaurantInfo";
 import Error from "@/components/shared/Error";
 import Loading from "@/components/shared/Loading";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import { useGetPublicRestaurant } from "@/hooks/useGetPublicRestaurant";
 import { MenuItem as TMenuItem } from "@/types";
+import { UserProfileFormDataType } from "@/validations/userProfileFormSchema";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -24,7 +26,13 @@ const RestaurantDetailPage = ({
 }: {
   params: { restaurantId: string };
 }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const storedCartItems = sessionStorage.getItem(
+      `cartItems-${params.restaurantId}`
+    );
+
+    return storedCartItems ? JSON.parse(storedCartItems) : [];
+  });
 
   const addToCart = (menuItem: TMenuItem) => {
     setCartItems((prev) => {
@@ -50,6 +58,11 @@ const RestaurantDetailPage = ({
         ];
       }
 
+      sessionStorage.setItem(
+        `cartItems-${params.restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
+
       return updatedCartItems;
     });
   };
@@ -58,8 +71,17 @@ const RestaurantDetailPage = ({
     setCartItems((prev) => {
       const updatedCartItems = prev.filter((item) => cartItem._id !== item._id);
 
+      sessionStorage.setItem(
+        `cartItems-${params.restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
+
       return updatedCartItems;
     });
+  };
+
+  const onCheckout = (userFormData: UserProfileFormDataType) => {
+    console.log(userFormData);
   };
 
   const { restaurant, isLoading } = useGetPublicRestaurant(params.restaurantId);
@@ -102,6 +124,12 @@ const RestaurantDetailPage = ({
               cartItems={cartItems}
               removeFromCart={removeFromCart}
             />
+            <CardFooter>
+              <CheckoutButton
+                disabled={cartItems.length === 0}
+                onCheckout={onCheckout}
+              />
+            </CardFooter>
           </Card>
         </div>
       </div>

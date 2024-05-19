@@ -20,14 +20,25 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import { cn } from "@/lib/utils";
 
 interface Props {
   onSave: (userProfileData: UserProfileFormDataType) => void;
   isLoading: boolean;
   currentUser: User;
+  noMargin?: boolean;
+  title?: string;
+  buttonText?: string;
 }
 
-const UserProfileForm = ({ isLoading, onSave, currentUser }: Props) => {
+const UserProfileForm = ({
+  isLoading,
+  onSave,
+  currentUser,
+  noMargin,
+  buttonText = "Submit",
+  title = "User Profile",
+}: Props) => {
   const form = useForm<UserProfileFormDataType>({
     resolver: zodResolver(userProfileFormSchema),
     defaultValues: currentUser,
@@ -41,12 +52,15 @@ const UserProfileForm = ({ isLoading, onSave, currentUser }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSave)}
-        className="mt-20 container mx-auto space-y-5"
+        className={cn(
+          "container mx-auto space-y-5",
+          noMargin ? "mt-0" : "mt-20"
+        )}
       >
         <div>
-          <h2 className="text-2xl font-bold">User Profile Form</h2>
+          <h2 className="text-2xl font-bold">{title}</h2>
           <FormDescription>
-            View and change your profile information here
+            View and change your information here
           </FormDescription>
         </div>
 
@@ -124,10 +138,10 @@ const UserProfileForm = ({ isLoading, onSave, currentUser }: Props) => {
         <Button className="bg-orange-500" size="lg" disabled={isLoading}>
           {isLoading ? (
             <span className="flex items-center gap-2">
-              <Loader2 size={18} className="animate-spin" /> Submitting
+              <Loader2 size={18} className="animate-spin" /> Processing...
             </span>
           ) : (
-            "Submit"
+            buttonText
           )}
         </Button>
       </form>

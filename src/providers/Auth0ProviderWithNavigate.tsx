@@ -1,6 +1,6 @@
 "use client";
 
-import { Auth0Provider } from "@auth0/auth0-react";
+import { AppState, Auth0Provider } from "@auth0/auth0-react";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren } from "react";
 
@@ -16,8 +16,8 @@ const Auth0ProviderWithNavigate = ({ children }: PropsWithChildren) => {
     throw new Error("Unable to initialize auth");
   }
 
-  const onRedirectCallback = () => {
-    router.push("/auth-callback");
+  const onRedirectCallback = (appState?: AppState) => {
+    router.push(appState?.returnTo || "/auth-callback");
   };
 
   return (
