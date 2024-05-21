@@ -12,9 +12,10 @@ import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 interface Props {
   onCheckout: (userFormData: UserProfileFormDataType) => void;
   disabled: boolean;
+  isLoading: boolean;
 }
 
-const CheckoutButton = ({ disabled, onCheckout }: Props) => {
+const CheckoutButton = ({ disabled, onCheckout, isLoading }: Props) => {
   const {
     isAuthenticated,
     isLoading: isAuthLoading,
@@ -41,7 +42,7 @@ const CheckoutButton = ({ disabled, onCheckout }: Props) => {
     );
   }
 
-  if (isAuthLoading || !currentUser) {
+  if (isAuthLoading || !currentUser || isLoading) {
     return (
       <Button disabled className="flex-1 flex items-center gap-2">
         <Loader2 size={18} className="animate-spin" />
