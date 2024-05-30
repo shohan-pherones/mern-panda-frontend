@@ -72,4 +72,5 @@ export interface Order {
   };
   totalAmount: number;
   status: OrderStatus;
+  createdAt: string;
 }
